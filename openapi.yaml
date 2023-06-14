@@ -1,15 +1,26 @@
 openapi: 3.0.3
 servers:
-  - url: http://localhost:8080
-    description: Local server
+  - url: https://api.example.com/{version}
+    description: Product server
+    variables:
+      version:
+        default: v1
+        description: API version
+  - url: https://dev.api.example.com/{version}
+    description: Develop server
+    variables:
+      version:
+        default: v1
+        description: API version
+  - url: http://localhost:4010
+    description: Local mock server
 info:
-  title: article api
+  title: news api
   version: 1.0.0
 paths:
   /articles:
     get:
       summary: Get articles
-      operationId: getArticles
       responses:
         '200':
           description: OK
@@ -22,7 +33,6 @@ paths:
   /artiles/{id}:
     get:
       summary: Get article by id
-      operationId: getArticleById
       parameters:
         - name: id
           in: path
